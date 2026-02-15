@@ -56,5 +56,37 @@ func getFileHash(filePath string) (string, error) {
 }
 
 func printTheContentsOfDir(dirPath string) {
-	fmt.Println("test123")
+	fmt.Println("placeholder")
+}
+
+func printTheContentsOfFile(filePath string) {
+	fmt.Println("placeholder")
+}
+
+func copyFile() {
+	fmt.Println("placeholder")
+}
+
+func copyDir() {
+	fmt.Println("placeholder")
+}
+
+func copyDirWithFiles() {
+	fmt.Println("placeholder")
+}
+
+func findLineInFile() {
+	fmt.Println("placeholder")
+}
+
+func findPhraseInFile() {
+	fmt.Println("placeholder")
+}
+
+func getFileMetadata() {
+	fmt.Println("placeholder")
+}
+
+func modifyFileMetadata() {
+	fmt.Println("placeholder")
 }
