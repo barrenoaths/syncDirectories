@@ -19,6 +19,7 @@ func main() {
 	}
 
 	fmt.Println(getFileHash(fileToHashPath))
+	fmt.Println(fileExist(fileToHashPath))
 }
 
 func dirExists(absPath string) bool {
@@ -27,6 +28,14 @@ func dirExists(absPath string) bool {
 		return false
 	}
 	return info.IsDir()
+}
+
+func fileExist(absPath string) bool {
+	info, err := os.Stat(absPath)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
 }
 
 func getFileHash(filePath string) (string, error) {
