@@ -11,8 +11,8 @@ import (
 func main() {
 	fmt.Println("--- Sync stuff ---")
 
-	dirPath1 := "/home/pawel/learnGo"
-	fileToHashPath := "/home/pawel/learnGo/syncDirectories/orchid.txt"
+	dirPath1 := "/opt/learnGo"
+	fileToHashPath := "/opt/learnGo/syncDirectories/orchid.txt"
 
 	if dirExists(dirPath1) {
 		fmt.Println("Directory exists")
