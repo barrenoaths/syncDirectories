@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func main() {
@@ -131,39 +132,6 @@ func copyDir() {
 	fmt.Println("placeholder")
 }
 
-/*
-func copyDirWithFiles(srcDir, destDir string) error {
-	err := os.MkdirAll(destDir, 0o755)
-	if err != nil {
-		return err
-	}
-
-	entries, err := os.ReadDir(srcDir)
-	if err != nil {
-		return err
-	}
-
-	for _, entry := range entries {
-		srcPath := filepath.Join(srcDir, entry.Name())
-		dstPath := filepath.Join(destDir, entry.Name())
-
-		if entry.IsDir() {
-			err = copyDirWithFiles(srcPath, dstPath)
-			if err != nil {
-				return err
-			}
-		} else {
-			err = copyDirWithFiles(srcPath, dstPath)
-			if err != nil {
-				return err
-			}
-		}
-	}
-
-	return nil
-}
-*/
-
 func copyDirWithFiles(srcDir, destDir string) error {
 	return filepath.WalkDir(srcDir, func(path string, d os.DirEntry, err error) error {
 		if err != nil {
@@ -187,8 +155,26 @@ func copyDirWithFiles(srcDir, destDir string) error {
 	})
 }
 
-func findLineInFile() {
-	fmt.Println("placeholder")
+func findLineInFile(filePath, phrase string) (bool, error) {
+	file, err := os.Open(filePath)
+	if err != nil {
+		return false, err
+	}
+
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		if strings.Contains(scanner.Text(), phrase) {
+			return true, nil
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		return false, err
+	}
+
+	return false, nil
 }
 
 func findPhraseInFile() {
